@@ -1,6 +1,6 @@
 <template>
   <button
-    class="transition-all inline-flex gap-2 items-center text-sm font-semibold text-zinc-100 shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2"
+    class="transition-all inline-flex gap-2 items-center rounded  text-sm font-medium text-white "
     :class="
       [colorClass[variant]],
       block ? 'w-full justify-center' : '',
@@ -14,10 +14,10 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from "vue";
+import { defineProps } from "vue";
 
 const props = defineProps({
-  label: { type: String, required: true },
+  label: { type: String, required: false },
   variant: { type: String, default: "main", required: false },
   block: { type: Boolean, required: false },
   rounded: { type: Boolean, required: false },
@@ -25,7 +25,7 @@ const props = defineProps({
 });
 
 const colorClass = {
-  neutral: "bg-gray-500/10 hover:bg-gray-500/20",
+  neutral: "bg-gray-500/20 hover:bg-gray-500/40",
   main: "bg-indigo-600 hover:bg-indigo-700",
 };
 </script>

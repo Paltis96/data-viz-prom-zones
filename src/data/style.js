@@ -1,21 +1,15 @@
-import concurenst from "@/data/concurenst.json";
-import prom from "@/data/prom.json";
 
-const url = "pmtiles://" + import.meta.env.BASE_URL + 'public/basemap.pmtiles'
+import { dataStyle } from "./data-style";
+
+const url = "pmtiles://" + import.meta.env.BASE_URL + 'basemap.pmtiles'
 
 export const style = {
     "version": 8,
     "sources": {
         "protomaps": {
             "type": "vector",
-            "url":url
-        }, "prom": {
-            "type": "geojson",
-            "data": prom,
-        }, "concurenst": {
-            "type": "geojson",
-            "data": concurenst,
-        }
+            "url": url
+        }, ...dataStyle.sources
     },
     "layers": [
         {
@@ -11165,102 +11159,9 @@ export const style = {
                 "text-halo-color": "#141414",
                 "text-halo-width": 1
             }
-        }, {
-            id: "prom",
-            type: "fill",
-            source: "prom",
-            layout: {},
-            paint: {
-                "fill-color": [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "price_promka_real"],
-                    15000,
-                    ["to-color", "#ffff00"],
-                    40000,
-                    ["to-color", "#ff7200"],
-                    60000,
-                    ["to-color", "#ff0000"],
-                    80000,
-                    ["to-color", "#C70050"],
-                    100000,
-                    ["to-color", "#B80FAE"],
-                ],
-                "fill-opacity": 0.25,
-            },
-        }, {
-            id: "outline",
-            type: "line",
-            source: "prom",
-            layout: {},
-            paint: {
-                "line-color": [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "price_promka_real"],
-                    15000,
-                    ["to-color", "#ffff00"],
-                    40000,
-                    ["to-color", "#ff7200"],
-                    60000,
-                    ["to-color", "#ff0000"],
-                    80000,
-                    ["to-color", "#C70050"],
-                    100000,
-                    ["to-color", "#B80FAE"],
-                ],
-                "line-width": 2,
-            },
-        },
-        {
-            id: "highlighted",
-            type: "line",
-            source: "prom",
-            paint: {
-                "line-color": "#08a0f7",
-                "line-width": 4,
-            },
+        }, ...dataStyle.layers
 
-            filter: ["in", "id", ""],
-        },
-        {
-            id: "concurenst-layer",
-            type: "circle",
-            source: "concurenst",
-            paint: {
-                "circle-radius": ["get", "size"],
-                "circle-stroke-width": 4,
-                "circle-color": "#21E18A",
-                "circle-stroke-color": "rgba(34, 176, 125, .45)",
-            },
-            filter: ["in", "promka_id", ""],
-        },
-        {
-            id: "concurenst-symbol",
-            type: "symbol",
-            source: "concurenst",
-            layout: {
-                "text-field": ["get", "Name"],
-                "text-size": 10,
-                "text-transform": "uppercase",
-                "text-anchor": "top",
-                "text-offset": [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "size"],
-                    8,
-                    ["literal", [0, 1]],
-                    14,
-                    ["literal", [0, 2]],
-                ],
-            },
-            paint: {
-                "text-halo-blur": 5,
-                "text-color": "#f2f2f2",
-            },
-            filter: ["in", "promka_id", ""],
-        }
     ],
     "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/black",
-    "glyphs": "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf"
+    "glyphs": 'https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf'
 }
