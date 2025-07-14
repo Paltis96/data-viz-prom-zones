@@ -1,6 +1,7 @@
 <template>
-  <div v-for="(item, idx) in data" :key="idx" class="pb-4 px-2">
-    <div class="">
+  <div
+  v-auto-animate
+  v-for="(item, idx) in data" :key="idx" class="pb-4 px-2">
       <div
         @click="switchActivbe(idx)"
         class="cursor-pointer flex items-center justify-between gap-1.5 rounded-md border p-4 border-zinc-700 bg-zinc-800 text-white"
@@ -35,7 +36,6 @@
         </p>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>

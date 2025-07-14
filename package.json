@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@tailwindcss/vite": "^4.1.11",
     "maplibre-gl": "^5.6.1",
     "pmtiles": "^4.3.0",

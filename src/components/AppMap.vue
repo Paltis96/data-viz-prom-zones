@@ -41,8 +41,7 @@ function showCompetitors(feature) {
 function hideCompetitors() {
   map.value
     .setFilter("competitor-layer", ["in", "promka_id", ""])
-    .setFilter("competitor-symbol", ["in", "promka_id", ""])
-    .setFilter("highlighted", ["in", "id", ""]);
+    .setFilter("competitor-symbol", ["in", "promka_id", ""]);
 }
 watch(
   () => props.showCompetitors,
@@ -68,6 +67,7 @@ onMounted(() => {
   );
   map.value.on("click", () => {
     hideCompetitors();
+    map.value.setFilter("highlighted", ["in", "id", ""]);
 
     selectedFeature.value = null;
     emit("clickFeature", selectedFeature.value);

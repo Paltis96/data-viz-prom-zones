@@ -1,6 +1,6 @@
 <template>
   <button
-    class="transition-all inline-flex gap-2 items-center rounded  text-sm font-medium text-white "
+    class="transition-all inline-flex gap-2 items-center rounded  text-sm font-medium text-white"
     :class="
       [colorClass[variant]],
       block ? 'w-full justify-center' : '',
