@@ -8,7 +8,7 @@ import { Protocol } from "pmtiles";
 import { style } from "@/data/style.js";
 import { ref, onMounted, shallowRef, markRaw, watch } from "vue";
 
-const emit = defineEmits(["clickFeature"]);
+const emit = defineEmits(["clickFeature", 'loaded']);
 const props = defineProps(["showCompetitors"]);
 
 const container = ref(null);
@@ -65,6 +65,9 @@ onMounted(() => {
       ],
     })
   );
+  map.value.on('load', ()=>{
+    emit('loaded')
+  })
   map.value.on("click", () => {
     hideCompetitors();
     map.value.setFilter("highlighted", ["in", "id", ""]);

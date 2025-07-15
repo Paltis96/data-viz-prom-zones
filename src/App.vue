@@ -1,4 +1,5 @@
 <template>
+  <AppPreloader v-if="!loaded" />
   <AppModal title="FAQ" v-if="showModal">
     <template #default>
       <FAQ :data="q" />
@@ -19,6 +20,7 @@
   </div>
   <AppMap
     @click-feature="(e) => (mapInfo = e)"
+    @loaded="loaded = true"
     :show-competitors="competitor"
   />
 </template>
@@ -32,12 +34,13 @@ import MapInfo from "./components/MapInfo.vue";
 import AppModal from "./components/AppModal.vue";
 import AppButton from "./components/AppButton.vue";
 import LucideMessageCircleQuestion from "./components/icons/LucideMessageCircleQuestion.vue";
+import AppPreloader from "./components/AppPreloader.vue";
 import FAQ from "./components/FAQ.vue";
 import faq from "./data/faq.json";
 const mapInfo = ref(null);
 const competitor = ref(false);
 const showModal = ref(false);
-
+const loaded = ref(false);
 function switchModal() {
   showModal.value = !showModal.value;
 }

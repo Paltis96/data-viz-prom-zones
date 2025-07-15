@@ -26,22 +26,18 @@
       </div>
     </div>
     <div class="mt-2">
-      <AppButton
-        @click="switchCompetitors"
-        block
-        label="Переглянути конкурентів"
-        :variant="competitors ? 'main' : 'neutral'"
-      ></AppButton>
+      <AppToggle @checked="e => switchCompetitors(e)" :in-state="competitors" label="Показати конкурентів" />
     </div>
   </AppMapCard>
 </template>
 
 <script setup>
-import { ref, watch, onUnmounted } from "vue";
+import { ref  } from "vue";
 
 import AppMapCard from "./MapCard.vue";
 import AppBadge from "./AppBadge.vue";
 import AppButton from "./AppButton.vue";
+import AppToggle from "./AppToggle.vue";
 
 const competitors = ref(false);
 const props = defineProps(["data"]);
@@ -50,9 +46,9 @@ const emit = defineEmits(["showCompetitor"]);
 function formatNum(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
-function switchCompetitors() {
-  competitors.value = !competitors.value;
-  emit("showCompetitor", competitors.value);
+function switchCompetitors(e) {
+  competitors.value = e;
+  emit("showCompetitor", e);
 }
 </script>
 
