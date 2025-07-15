@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 z-50 grid place-content-center bg-zinc-900 p-4">
+  <div class="fixed inset-0 z-50 grid place-content-center bg-zinc-900/90 backdrop-blur-lg p-4">
     <span class="loader"></span>
   </div>
 </template>

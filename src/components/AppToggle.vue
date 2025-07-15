@@ -1,10 +1,14 @@
 <template>
-  <div class="inline-flex gap-2 h-12 w-full items-center">
+  <div
+  @click="checked = !checked"
+    class="inline-flex gap-2 px-2 py-4 rounded-lg w-full items-center bg-zinc-900 hover:bg-zinc-800 transition-colors cursor-pointer"
+  >
     <label
       for="AcceptConditions"
       class="relative block h-6 w-12 rounded-full transition-colors [-webkit-tap-highlight-color:_transparent] bg-zinc-600 has-checked:bg-indigo-500"
     >
       <input
+       @click.stop.prevent
         type="checkbox"
         id="AcceptConditions"
         v-model="checked"
