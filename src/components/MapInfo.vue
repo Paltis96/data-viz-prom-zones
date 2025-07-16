@@ -1,6 +1,6 @@
 <template>
   <AppMapCard v-if="data">
-    <h2 class="text-xl text-zinc-100 font-bold mb-2"></h2>
+    <h2 class="text-xl text-zinc-100 font-bold mb-2">{{ data.street }}</h2>
     <div class="w-full inline-flex gap-4 pt-2 pb-4 border-b-1 border-zinc-800">
       <div class="inline-flex gap-2 items-center">
         <span class="text-zinc-300 text-sm">Клас:</span>
@@ -26,13 +26,17 @@
       </div>
     </div>
     <div class="mt-2">
-      <AppToggle @checked="e => switchCompetitors(e)" :in-state="competitors" label="Показати конкурентів" />
+      <AppToggle
+        @checked="(e) => switchCompetitors(e)"
+        :in-state="competitors"
+        label="Показати конкурентів"
+      />
     </div>
   </AppMapCard>
 </template>
 
 <script setup>
-import { ref  } from "vue";
+import { ref } from "vue";
 
 import AppMapCard from "./MapCard.vue";
 import AppBadge from "./AppBadge.vue";
