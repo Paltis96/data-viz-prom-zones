@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-11/12 md:h-full" ref="container"></div>
+  <div class="w-full h-full" ref="container"></div>
 </template>
 
 <script setup>
@@ -7,13 +7,15 @@ import { Map, addProtocol } from "maplibre-gl";
 import { Protocol } from "pmtiles";
 import { style } from "@/data/style.js";
 import { ref, onMounted, shallowRef, markRaw, watch } from "vue";
+import { useWindowSize } from "@vueuse/core";
 
-const emit = defineEmits(["clickFeature", 'loaded']);
+const { width, height } = useWindowSize();
+const emit = defineEmits(["clickFeature", "loaded"]);
 const props = defineProps(["showCompetitors"]);
-
 const container = ref(null);
 const map = shallowRef(null);
 const selectedFeature = ref(null);
+
 let protocol = new Protocol();
 
 addProtocol("pmtiles", protocol.tile);
@@ -22,12 +24,12 @@ function zoomTo(feature) {
   let mapZoom = map.value.getZoom();
   if (mapZoom > 13) {
     map.value.easeTo({
-      center: [feature.properties.lon, feature.properties.lat],
+      center: [feature.properties.lon, feature.properties.lat - calcShift()],
       zoom: 13,
     });
   } else {
     map.value.easeTo({
-      center: [feature.properties.lon, feature.properties.lat],
+      center: [feature.properties.lon, feature.properties.lat - calcShift()],
     });
   }
 }
@@ -43,6 +45,16 @@ function hideCompetitors() {
     .setFilter("competitor-layer", ["in", "promka_id", ""])
     .setFilter("competitor-symbol", ["in", "promka_id", ""]);
 }
+
+function calcShift() {
+  let h = 0;
+  if (width.value <= 768) {
+    const bounds = map.value.getBounds();
+    h = (bounds.getNorth() - bounds.getSouth()) /4;
+  }
+  return h;
+}
+
 watch(
   () => props.showCompetitors,
   (newVal) => {
@@ -65,9 +77,9 @@ onMounted(() => {
       ],
     })
   );
-  map.value.on('load', ()=>{
-    emit('loaded')
-  })
+  map.value.on("load", () => {
+    emit("loaded");
+  });
   map.value.on("click", () => {
     hideCompetitors();
     map.value.setFilter("highlighted", ["in", "id", ""]);
