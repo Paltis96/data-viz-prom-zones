@@ -1,7 +1,7 @@
 <template>
   <div
   @click="checked = !checked"
-    class="inline-flex gap-2 px-2 py-4 rounded-lg w-full items-center bg-zinc-900 hover:bg-zinc-800 transition-colors cursor-pointer"
+    class="inline-flex gap-2 px-2 py-4 rounded-lg w-full items-center bg-zinc-800/50 hover:bg-zinc-800 transition-colors cursor-pointer"
   >
     <label
       for="AcceptConditions"

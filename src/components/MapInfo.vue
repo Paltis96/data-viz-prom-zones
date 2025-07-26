@@ -27,6 +27,7 @@
     </div>
     <div class="mt-2">
       <AppToggle
+      
         @checked="(e) => switchCompetitors(e)"
         :in-state="competitors"
         label="Показати конкурентів"

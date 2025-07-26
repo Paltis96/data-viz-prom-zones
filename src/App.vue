@@ -13,7 +13,7 @@
   >
     <MapInfo :data="mapInfo" @show-competitor="(e) => (competitor = e)" />
     <MapLegend>
-      <AppButton rounded small variant="neutral" @click="switchModal">
+      <AppButton rounded small variant="neutral"  @click="switchModal">
         <LucideMessageCircleQuestion class="text-md" />
       </AppButton>
     </MapLegend>
