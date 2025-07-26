@@ -10,7 +10,7 @@
         {{ title }}
       </h2>
 
-      <div class="mt-4 w-full h-[450px] overflow-x-auto">
+      <div class="mt-4 w-full h-[450px] overflow-y-scroll">
         <slot> </slot>
       </div>
 

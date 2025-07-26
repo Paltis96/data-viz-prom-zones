@@ -2,7 +2,7 @@
   <AppPreloader v-if="!loaded" />
   <AppModal title="FAQ" v-if="showModal">
     <template #default>
-      <FAQ :data="q" />
+     <FAQ :data="q" />
     </template>
     <template #footer>
       <AppButton @click="switchModal" label="Ok"> </AppButton>
